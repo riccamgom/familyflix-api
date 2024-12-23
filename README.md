@@ -138,6 +138,16 @@ Route::middleware(['jwt'])->group(function () {
 })
 ```
 
+#### Register middleware in the AppServiceProvider
+
+```
+   public function boot(Router $router): void
+    {
+        // Register the middleware
+        $router->aliasMiddleware('jwt.auth', JWTMiddleware::class);
+    }
+```
+
 ### 9. RUN LARAVEL
 
 ```bash

@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+//JWT Imports
+use Illuminate\Routing\Router; // Import Router
+use App\Http\Middleware\JWTMiddleware; // Import Middleware
 use App\Services\JWTService;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,8 +23,9 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(Router $router): void
     {
-        //
+        // Register the middleware
+        $router->aliasMiddleware('jwt.auth', JWTMiddleware::class);
     }
 }

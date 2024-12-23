@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\TestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\AuthController;
 
 
@@ -9,5 +9,5 @@ use App\Http\Controllers\AuthController;
 Route::post('/login', [AuthController::class, 'login']);
 // Group routes that need JWT authentication
 Route::middleware(['jwt.auth'])->group(function () {
-    Route::apiResource('test', TestController::class);
+    Route::get('/test', [TestController::class, 'index']);
 });
